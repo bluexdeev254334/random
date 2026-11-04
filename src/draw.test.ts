@@ -9,8 +9,9 @@ import {
   loadDrawState,
   randomIndex,
   SEAT_COUNT,
+  SEAT_LAYOUT,
   STORAGE_KEY,
-  TEAM_DESK_COUNTS,
+  TEAM_DESK_SEATS,
   undoLatest,
 } from './draw';
 
@@ -26,10 +27,11 @@ describe('seat draw domain', () => {
     expect([...round.assignments].sort((a, b) => a - b)).toEqual(Array.from({ length: SEAT_COUNT }, (_, i) => i + 1));
   });
 
-  it('defines the requested default desk counts without guessing seat positions', () => {
-    expect(TEAM_DESK_COUNTS).toEqual([5, 5, 6, 5]);
-    expect(TEAM_DESK_COUNTS.reduce((sum, desks) => sum + desks, 0)).toBe(21);
-    expect(SEAT_COUNT).toBe(35);
+  it('defines four teams with the requested desks and exactly 35 ordered seats', () => {
+    expect(TEAM_DESK_SEATS.map((team) => team.length)).toEqual([5, 6, 5, 6]);
+    expect(TEAM_DESK_SEATS.flat().reduce((sum, seats) => sum + seats, 0)).toBe(SEAT_COUNT);
+    expect(SEAT_LAYOUT.flat(2)).toHaveLength(SEAT_COUNT);
+    expect(SEAT_LAYOUT.flat(2)).toEqual(Array.from({ length: SEAT_COUNT }, (_, index) => index));
   });
 
   it('uses rejection sampling to avoid modulo bias', () => {

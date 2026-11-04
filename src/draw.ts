@@ -1,6 +1,15 @@
 export const SEAT_COUNT = 35;
 export const STORAGE_KEY = '11b7-seat-draw-v1';
-export const TEAM_DESK_COUNTS = [5, 5, 6, 5] as const;
+export const TEAM_DESK_SEATS = [
+  [2, 2, 2, 1, 1],
+  [2, 2, 2, 2, 1, 1],
+  [2, 2, 2, 1, 1],
+  [2, 2, 2, 1, 1, 1],
+] as const;
+let nextSeat = 0;
+export const SEAT_LAYOUT = TEAM_DESK_SEATS.map((desks) =>
+  desks.map((seatCount) => Array.from({ length: seatCount }, () => nextSeat++)),
+);
 
 export type DrawState = {
   assignments: number[];

@@ -4,30 +4,19 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
-    "dev:client": "vite --host 0.0.0.0",
-    "dev:server": "node --watch server/index.js",
+    "dev": "vite",
     "build": "tsc -b && vite build",
-    "test": "vitest run",
-    "start": "node server/index.js"
+    "test": "vitest run"
   },
   "dependencies": {
-    "bcryptjs": "^3.0.3",
-    "better-sqlite3": "^13.0.3",
-    "cookie-parser": "^1.4.7",
-    "dotenv": "^18.0.9",
-    "express": "^5.3.0",
-    "express-rate-limit": "^8.7.3",
-    "helmet": "^8.3.0",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "ua-parser-js": "^2.0.10"
+    "react-dom": "^19.1.0"
   },
   "devDependencies": {
+    "@types/node": "^26.6.6",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.7",
     "@vitejs/plugin-react": "^4.7.0",
-    "concurrently": "^10.0.6",
     "typescript": "~5.8.3",
     "vite": "^6.3.5",
     "vitest": "^5.0.5"
